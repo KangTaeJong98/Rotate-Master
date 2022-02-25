@@ -15,4 +15,5 @@
     <string name="back">Back</string>
     <string name="notification">Notification</string>
     <string name="start_on_boot">Start On Boot</string>
+    <string name="rotate_notification_channel_id">Rotate Notification</string>
 </resources>
