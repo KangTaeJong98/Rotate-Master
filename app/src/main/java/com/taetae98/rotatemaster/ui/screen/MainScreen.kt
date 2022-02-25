@@ -1,23 +1,33 @@
 package com.taetae98.rotatemaster.ui.screen
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.R
+import com.taetae98.rotatemaster.protocol.RotateItem
 
 @Composable
 fun MainScreen(navController: NavHostController) {
     Scaffold(
         topBar = {
-            Toolbar(navController)
+            Toolbar(navController = navController)
         }
     ) {
-        
+        Content(navController = navController)
     }
 }
 
@@ -33,6 +43,39 @@ private fun Toolbar(navController: NavHostController) {
     )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun Content(navController: NavHostController) {
+    val items = listOf(
+        RotateItem.Portrait {
+
+        },
+        RotateItem.Landscape {
+
+        },
+        RotateItem.ReversePortrait {
+
+        },
+        RotateItem.ReverseLandscape {
+
+        },
+        RotateItem.RotateLeft {
+
+        },
+        RotateItem.RotateRight {
+
+        }
+    )
+
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(2),
+        contentPadding = PaddingValues(5.dp)
+    ) {
+        items(items) { item ->
+            RotateItem(item = item)
+        }
+    }
+}
 @Composable
 private fun SettingAction(navController: NavHostController) {
     IconButton(
@@ -41,6 +84,32 @@ private fun SettingAction(navController: NavHostController) {
         }
     ) {
         Icon(imageVector = Icons.Rounded.Settings, contentDescription = stringResource(id = R.string.setting))
+    }
+}
+
+@Composable
+private fun RotateItem(item: RotateItem) {
+    Card(
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp)
+        ) {
+            Image(
+                modifier = Modifier.size(40.dp),
+                painter = painterResource(id = item.icon),
+                contentDescription = stringResource(id = item.contentDescription)
+            )
+
+            Text(
+                modifier = Modifier.padding(10.dp),
+                text = stringResource(id = item.description),
+            )
+        }
     }
 }
 
