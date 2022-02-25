@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taetae98.rotatemaster">
 
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name=".application.HiltApplication"
         android:allowBackup="true"
