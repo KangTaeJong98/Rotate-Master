@@ -18,7 +18,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.R
+import com.taetae98.rotatemaster.protocol.NavigationScreen
 import com.taetae98.rotatemaster.protocol.RotateItem
+
+object MainScreen : NavigationScreen {
+    override val route = "MainScreen"
+
+    @Composable
+    override fun Compose(navController: NavHostController) {
+        MainScreen(navController = navController)
+    }
+}
 
 @Composable
 fun MainScreen(navController: NavHostController) {
