@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Rotate Master</string>
     <string name="setting">Setting</string>
+    <string name="portrait">Portrait</string>
+    <string name="landscape">Landscape</string>
+    <string name="reverse_portrait">Portrait(R)</string>
+    <string name="reverse_landscape">Landscape(R)</string>
+    <string name="rotate_left">Rotate Left</string>
+    <string name="rotate_right">Rotate Right</string>
 </resources>
