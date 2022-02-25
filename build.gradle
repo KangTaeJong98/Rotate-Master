@@ -4,6 +4,7 @@ buildscript {
         navigation_compose_version = "2.4.1"
         hilt_version = "2.41"
         hilt_compose_version = "1.0.0"
+        data_store_version = "1.0.0"
     }
 
     dependencies {
