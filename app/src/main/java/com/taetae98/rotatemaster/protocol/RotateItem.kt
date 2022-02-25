@@ -8,6 +8,18 @@ sealed class RotateItem(
     open val contentDescription: Int,
     open val action: () -> Unit
 ) {
+    open class Rotate(
+        override val action: () -> Unit
+    ) : RotateItem(
+        R.drawable.ic_round_screen_rotation_24, R.string.rotate, R.string.rotate, action
+    )
+
+    open class LockRotate(
+        override val action: () -> Unit
+    ) : RotateItem(
+        R.drawable.ic_round_screen_lock_rotation_24, R.string.lock_rotate, R.string.lock_rotate, action
+    )
+
     open class Portrait(
         override val action: () -> Unit
     ) : RotateItem(

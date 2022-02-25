@@ -2,6 +2,7 @@ package com.taetae98.rotatemaster.ui.screen
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -15,12 +16,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.R
+import com.taetae98.rotatemaster.manager.RotateManager
 import com.taetae98.rotatemaster.protocol.NavigationScreen
 import com.taetae98.rotatemaster.protocol.RotateItem
+import com.taetae98.rotatemaster.ui.dialog.RotatePermissionRequestDialog
 import com.taetae98.rotatemaster.ui.theme.RotateMasterTheme
+import com.taetae98.rotatemaster.viewModel.RotateViewModel
 
 object MainScreen : NavigationScreen {
     override val route = "MainScreen"
@@ -32,13 +37,20 @@ object MainScreen : NavigationScreen {
 }
 
 @Composable
-fun MainScreen(navController: NavHostController) {
-    Scaffold(
-        topBar = {
-            Toolbar(navController = navController)
+fun MainScreen(
+    navController: NavHostController,
+    rotateViewModel: RotateViewModel = hiltViewModel()
+) {
+    if (!rotateViewModel.rotateManager.isAvailable()) {
+        RotatePermissionRequestDialog()
+    } else {
+        Scaffold(
+            topBar = {
+                Toolbar(navController = navController)
+            }
+        ) {
+            Content(navController = navController)
         }
-    ) {
-        Content(navController = navController)
     }
 }
 
@@ -56,25 +68,34 @@ private fun Toolbar(navController: NavHostController) {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun Content(navController: NavHostController) {
+private fun Content(
+    navController: NavHostController,
+    rotateViewModel: RotateViewModel = hiltViewModel()
+) {
     val items = listOf(
+        RotateItem.Rotate {
+            rotateViewModel.rotateManager.setRotationState(RotateManager.AUTO_ROTATION)
+        },
+        RotateItem.LockRotate {
+            rotateViewModel.rotateManager.setRotationState(RotateManager.LOCK_ROTATION)
+        },
         RotateItem.Portrait {
-
+            rotateViewModel.rotateManager.setRotation(RotateManager.PORTRAIT)
         },
         RotateItem.Landscape {
-
+            rotateViewModel.rotateManager.setRotation(RotateManager.LANDSCAPE)
         },
         RotateItem.ReversePortrait {
-
+            rotateViewModel.rotateManager.setRotation(RotateManager.REVERSE_PORTRAIT)
         },
         RotateItem.ReverseLandscape {
-
+            rotateViewModel.rotateManager.setRotation(RotateManager.REVERSE_LANDSCAPE)
         },
         RotateItem.RotateLeft {
-
+            rotateViewModel.rotateManager.rotateLeft()
         },
         RotateItem.RotateRight {
-
+            rotateViewModel.rotateManager.rotateRight()
         }
     )
 
@@ -87,8 +108,11 @@ private fun Content(navController: NavHostController) {
         }
     }
 }
+
 @Composable
-private fun SettingAction(navController: NavHostController) {
+private fun SettingAction(
+    navController: NavHostController,
+) {
     IconButton(
         onClick = {
 
@@ -108,6 +132,9 @@ private fun RotateItem(item: RotateItem) {
         modifier = Modifier
             .padding(5.dp)
             .fillMaxWidth()
+            .clickable {
+                item.action.invoke()
+            }
     ) {
         Row(
             modifier = Modifier
