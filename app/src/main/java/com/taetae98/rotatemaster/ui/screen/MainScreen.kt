@@ -115,7 +115,7 @@ private fun SettingAction(
 ) {
     IconButton(
         onClick = {
-
+            navController.navigate(SettingScreen.route)
         }
     ) {
         Icon(

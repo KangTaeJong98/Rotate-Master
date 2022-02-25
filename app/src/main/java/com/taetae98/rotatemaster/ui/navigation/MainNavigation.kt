@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.ui.screen.MainScreen
+import com.taetae98.rotatemaster.ui.screen.SettingScreen
 
 @Preview
 @Composable
@@ -14,7 +15,7 @@ fun MainNavigation(
     navController: NavHostController = rememberNavController()
 ) {
     val screens = listOf(
-        MainScreen
+        MainScreen, SettingScreen
     )
 
     NavHost(navController = navController, startDestination = screens.first().route) {
