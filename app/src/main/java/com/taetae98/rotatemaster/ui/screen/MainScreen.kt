@@ -7,10 +7,10 @@ import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +20,7 @@ import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.R
 import com.taetae98.rotatemaster.protocol.NavigationScreen
 import com.taetae98.rotatemaster.protocol.RotateItem
+import com.taetae98.rotatemaster.ui.theme.RotateMasterTheme
 
 object MainScreen : NavigationScreen {
     override val route = "MainScreen"
@@ -49,7 +50,7 @@ private fun Toolbar(navController: NavHostController) {
         },
         actions = {
             SettingAction(navController)
-        }
+        },
     )
 }
 
@@ -93,7 +94,11 @@ private fun SettingAction(navController: NavHostController) {
 
         }
     ) {
-        Icon(imageVector = Icons.Rounded.Settings, contentDescription = stringResource(id = R.string.setting))
+        Icon(
+            painter = painterResource(id = R.drawable.ic_round_settings_24),
+            contentDescription = stringResource(id = R.string.setting),
+            tint = Color.White
+        )
     }
 }
 
@@ -112,7 +117,8 @@ private fun RotateItem(item: RotateItem) {
             Image(
                 modifier = Modifier.size(40.dp),
                 painter = painterResource(id = item.icon),
-                contentDescription = stringResource(id = item.contentDescription)
+                contentDescription = stringResource(id = item.contentDescription),
+                colorFilter = ColorFilter.tint(Color.Black)
             )
 
             Text(
@@ -126,5 +132,7 @@ private fun RotateItem(item: RotateItem) {
 @Preview
 @Composable
 private fun Preview() {
-    MainScreen(navController = rememberNavController())
+    RotateMasterTheme {
+        MainScreen(navController = rememberNavController())
+    }
 }

@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Theme.RotateMaster" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:statusBarColor">@color/main</item>
+        <item name="android:statusBarColor">@color/light_primary</item>
         <item name="colorControlNormal">@color/white</item>
     </style>
 </resources>
