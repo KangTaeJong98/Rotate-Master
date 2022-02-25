@@ -7,4 +7,7 @@
     <string name="reverse_landscape">Landscape(R)</string>
     <string name="rotate_left">Rotate Left</string>
     <string name="rotate_right">Rotate Right</string>
+    <string name="request_permission">Request Permission</string>
+    <string name="request_rotate_permission">You need permission to use the app.\n\n<b>* Change rotate state.</b>\n<b>* Rotate the screen.</b></string>
+    <string name="confirm">Confirm</string>
 </resources>
