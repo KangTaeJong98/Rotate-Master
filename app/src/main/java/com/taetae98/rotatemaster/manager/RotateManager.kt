@@ -3,10 +3,10 @@ package com.taetae98.rotatemaster.manager
 import android.content.Context
 import android.provider.Settings
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@ActivityRetainedScoped
+@Singleton
 class RotateManager @Inject constructor(
     @ApplicationContext
     private val context: Context,
