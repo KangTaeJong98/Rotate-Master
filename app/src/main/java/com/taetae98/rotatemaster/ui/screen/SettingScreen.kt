@@ -81,6 +81,11 @@ private fun NotificationItem(
     LaunchedEffect(key1 = "notification_state") {
         settingViewModel.settingRepository.getNotification().collect {
             state.value = it
+            if (it) {
+                settingViewModel.rotateNotificationManager.sendMessage()
+            } else {
+                settingViewModel.rotateNotificationManager.cancelMessage()
+            }
         }
     }
 
