@@ -8,7 +8,7 @@ import com.taetae98.rotatemaster.repository.SettingRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,7 +35,7 @@ class BootReceiver : BroadcastReceiver() {
     }
 
     private suspend fun isNotificationAvailable(): Boolean {
-        return  settingRepository.getNotification().first() &&
-                settingRepository.getStartOnBoot().first()
+        return  settingRepository.getNotification().firstOrNull() ?: false &&
+                settingRepository.getStartOnBoot().firstOrNull() ?: false
     }
 }

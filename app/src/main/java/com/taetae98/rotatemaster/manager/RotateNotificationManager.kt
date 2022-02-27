@@ -6,10 +6,10 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.taetae98.rotatemaster.R
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@ActivityRetainedScoped
+@Singleton
 class RotateNotificationManager @Inject constructor(
     @ApplicationContext
     private val context: Context
@@ -30,10 +30,18 @@ class RotateNotificationManager @Inject constructor(
         )
     }
 
+    fun cancelMessage() {
+        manager.cancel(context.resources.getInteger(R.integer.rotate_notification_id))
+    }
+
     private fun createNotificationChannel() {
         manager.createNotificationChannel(
-            NotificationChannelCompat.Builder(context.getString(R.string.rotate_notification_channel_id), NotificationManagerCompat.IMPORTANCE_MAX)
-                .build()
+            NotificationChannelCompat.Builder(
+                context.getString(R.string.rotate_notification_channel_id),
+                NotificationManagerCompat.IMPORTANCE_MAX
+            ).apply {
+                setName(context.getString(R.string.rotate_notification_channel_id))
+            }.build()
         )
     }
 }

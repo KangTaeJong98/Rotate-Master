@@ -6,12 +6,12 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@ActivityRetainedScoped
+@Singleton
 class SettingRepository @Inject constructor(
     @SettingDataStore
     private val settingDataStore: DataStore<Preferences>
@@ -28,13 +28,13 @@ class SettingRepository @Inject constructor(
         }
     }
 
-    suspend fun getNotification(): Flow<Boolean> {
+    fun getNotification(): Flow<Boolean> {
         return settingDataStore.data.map {
             it[NOTIFICATION] ?: false
         }
     }
 
-    suspend fun getStartOnBoot(): Flow<Boolean> {
+    fun getStartOnBoot(): Flow<Boolean> {
         return settingDataStore.data.map {
             it[START_ON_BOOT] ?: false
         }
