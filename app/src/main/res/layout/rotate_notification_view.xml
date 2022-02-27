@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageButton
+        android:id="@+id/rotate_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/rotate"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_rotation_24" />
+
+    <ImageButton
+        android:id="@+id/rotate_lock_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/lock_rotate"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_lock_rotation_24" />
+
+    <ImageButton
+        android:id="@+id/portrait_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/portrait"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_lock_portrait_24" />
+
+    <ImageButton
+        android:id="@+id/landscape_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/landscape"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_lock_landscape_24" />
+
+    <ImageButton
+        android:id="@+id/reverse_portrait_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/reverse_portrait"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_lock_portrait_24" />
+
+    <ImageButton
+        android:id="@+id/reverse_landscape_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/reverse_landscape"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_screen_lock_landscape_24" />
+
+    <ImageButton
+        android:id="@+id/rotate_left_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/rotate_left"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_rotate_left_24" />
+
+    <ImageButton
+        android:id="@+id/rotate_right_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:contentDescription="@string/rotate_right"
+        android:minWidth="64dp"
+        android:minHeight="64dp"
+        android:src="@drawable/ic_round_rotate_right_24" />
+</LinearLayout>
