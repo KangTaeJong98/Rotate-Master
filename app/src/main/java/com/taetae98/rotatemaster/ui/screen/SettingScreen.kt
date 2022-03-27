@@ -19,6 +19,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.taetae98.rotatemaster.R
 import com.taetae98.rotatemaster.protocol.NavigationScreen
+import com.taetae98.rotatemaster.ui.compose.AppAdView
 import com.taetae98.rotatemaster.viewModel.SettingViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
@@ -40,6 +41,11 @@ fun SettingScreen(
     Scaffold(
         topBar = {
             Toolbar(navController)
+        },
+        bottomBar = {
+            AppAdView(
+                modifier = Modifier.fillMaxWidth().wrapContentHeight()
+            )
         }
     ) {
         Content()
