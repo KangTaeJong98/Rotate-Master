@@ -87,11 +87,6 @@ private fun NotificationItem(
     LaunchedEffect(key1 = "notification_state") {
         settingViewModel.settingRepository.getNotification().collect {
             state.value = it
-            if (it) {
-                settingViewModel.rotateNotificationManager.sendMessage()
-            } else {
-                settingViewModel.rotateNotificationManager.cancelMessage()
-            }
         }
     }
 
@@ -101,7 +96,14 @@ private fun NotificationItem(
             .fillMaxWidth()
             .clickable {
                 settingViewModel.viewModelScope.launch(Dispatchers.IO) {
-                    settingViewModel.settingRepository.setNotification(!state.value)
+                    val isChecked = !state.value
+
+                    settingViewModel.settingRepository.setNotification(isChecked)
+                    if (isChecked) {
+                        settingViewModel.rotateNotificationManager.sendMessage()
+                    } else {
+                        settingViewModel.rotateNotificationManager.cancelMessage()
+                    }
                 }
             }
     ) {
