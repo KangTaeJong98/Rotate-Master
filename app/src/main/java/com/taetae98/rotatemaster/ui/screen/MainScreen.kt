@@ -23,6 +23,7 @@ import com.taetae98.rotatemaster.R
 import com.taetae98.rotatemaster.manager.RotateManager
 import com.taetae98.rotatemaster.protocol.NavigationScreen
 import com.taetae98.rotatemaster.protocol.RotateItem
+import com.taetae98.rotatemaster.ui.compose.AppAdView
 import com.taetae98.rotatemaster.ui.dialog.RotatePermissionRequestDialog
 import com.taetae98.rotatemaster.ui.theme.RotateMasterTheme
 import com.taetae98.rotatemaster.viewModel.RotateViewModel
@@ -47,6 +48,13 @@ fun MainScreen(
         Scaffold(
             topBar = {
                 Toolbar(navController = navController)
+            },
+            bottomBar = {
+                AppAdView(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                )
             }
         ) {
             Content(navController = navController)
