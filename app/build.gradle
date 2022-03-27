@@ -8,6 +8,21 @@ plugins {
 android {
     compileSdk 32
 
+    signingConfigs {
+        debugKey {
+            storeFile file('debug.keystore')
+            storePassword 'asd1541'
+            keyAlias 'taetae'
+            keyPassword 'asd1541'
+        }
+        releaseKey {
+            storeFile file('release.keystore')
+            storePassword 'asd1541'
+            keyAlias 'taetae'
+            keyPassword 'asd1541'
+        }
+    }
+
     defaultConfig {
         applicationId "com.taetae98.rotatemaster"
 
@@ -26,13 +41,25 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            signingConfig signingConfigs.debugKey
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationIdSuffix = ".debug"
         }
         release {
             minifyEnabled true
+            signingConfig signingConfigs.releaseKey
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        taetae {
+            minifyEnabled false
+            signingConfig signingConfigs.debugKey
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            applicationIdSuffix = ".taetae"
+        }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
